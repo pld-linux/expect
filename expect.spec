@@ -23,8 +23,8 @@ Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	tcl-devel >= 8.4.4
-BuildRequires:	tk-devel >= 8.4.3
+BuildRequires:	tcl-devel >= 8.3.4
+BuildRequires:	tk-devel >= 8.3.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
