@@ -6,8 +6,9 @@ Summary(ru):	òÁÓÛÉÒÅÎÉÅ tcl ÄÌÑ ÕÐÒÁ×ÌÅÎÉÑ ÐÒÏÇÒÁÍÍÁÍÉ ÉÚ ÓËÒÉÐÔÏ×
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Summary(uk):	òÏÚÛÉÒÅÎÎÑ tcl ÄÌÑ ËÅÒÕ×ÁÎÎÑ ÐÒÏÇÒÁÍÁÍÉ Ú¦ ÓËÒÉÐÔ¦×
 Name:		expect
-Version:	5.38.0
-Release:	1
+%define	major	5.38
+Version:	%{major}.0
+Release:	2
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
@@ -17,13 +18,13 @@ Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
+Patch5:		%{name}-soname.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
-BuildRequires:	glibc-static
-BuildRequires:	tcl-devel >= 8.3.2
-BuildRequires:	tk-devel >= 8.3.2
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	tcl-devel >= 8.4.3
+BuildRequires:	tk-devel >= 8.4.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -103,12 +104,13 @@ Tcl extension language static library.
 Biblioteka statyczna rozszerzenia jêzyka TCL.
 
 %prep
-%setup -q -n %{name}-5.38
+%setup -q -n %{name}-%{major}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 chmod +w {.,testsuite}/configure
 
@@ -141,7 +143,12 @@ LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
 %{__make} install \
 	INSTALL_ROOT=$RPM_BUILD_ROOT
 
-( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
+mv -f $RPM_BUILD_ROOT%{_bindir}/{rftp,rftp-expect}
+
+ln -sf $(cd $RPM_BUILD_ROOT%{_libdir} ; echo libexpect%{major}.so.*.*) \
+	$RPM_BUILD_ROOT%{_libdir}/libexpect%{major}.so
+ln -sf $(cd $RPM_BUILD_ROOT%{_libdir} ; echo libexpect%{major}.so.*.*) \
+	$RPM_BUILD_ROOT%{_libdir}/libexpect.so
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -170,7 +177,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/weather
 %dir %{_libdir}/expect*
 %attr(755,root,root) %{_libdir}/expect*/pkgIndex.tcl
-%attr(755,root,root) %{_libdir}/libe*.so
+%attr(755,root,root) %{_libdir}/libexpect*.so.*.*
 %{_mandir}/man1/autoexpect.*
 %{_mandir}/man1/cryptdir.*
 %{_mandir}/man1/decryptdir.*
@@ -197,6 +204,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc FAQ README ChangeLog
+%attr(755,root,root) %{_libdir}/libexpect*.so
 %{_includedir}/*
 %{_mandir}/man3/*
 

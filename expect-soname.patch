@@ -1,0 +1,25 @@
+--- expect-5.38/Makefile.in.orig	2002-07-18 18:07:41.000000000 +0200
++++ expect-5.38/Makefile.in	2003-06-17 20:51:03.000000000 +0200
+@@ -412,7 +412,8 @@
+ expect-shared-lib-file :: $(EXP_SHARED_LIB_FILE)
+ $(EXP_SHARED_LIB_FILE): $(OFILES)
+ 	-rm -f $(EXP_SHARED_LIB_FILE)
+-	@TCL_SHLIB_LD@ -o $(EXP_SHARED_LIB_FILE) $(SHARED_OFILES) @EXP_LD_SEARCH_FLAGS@ @EXP_SHLIB_LD_LIBS@
++	@TCL_SHLIB_LD@ -o $(EXP_SHARED_LIB_FILE) $(SHARED_OFILES) @EXP_SHLIB_LD_LIBS@ -Wl,-soname=`echo $(EXP_SHARED_LIB_FILE) | sed -e 's/\.so.*/.so.0/'`
++	ln -s $(EXP_SHARED_LIB_FILE) `echo $(EXP_SHARED_LIB_FILE) | sed -e 's/\.so.*/.so/'`
+ 
+ .PHONY: install-info install info
+ install-info:
+--- expect-5.38/configure.in.orig	2002-07-18 17:51:06.000000000 +0200
++++ expect-5.38/configure.in	2003-06-17 20:59:20.000000000 +0200
+@@ -1216,8 +1216,8 @@
+ 
+ # now broken out into EXP_AND_TCL_LIBS and EXP_AND_TK_LIBS.  Had to do this
+ # in order to avoid repeating lib specs to which some systems object.
+-EXP_AND_TCL_LIBS="$EXP_AND_TCL_LIBS $EXP_CC_SEARCH_FLAGS"
+-EXP_AND_TK_LIBS="$EXP_AND_TK_LIBS $EXP_CC_SEARCH_FLAGS"
++EXP_AND_TCL_LIBS="$EXP_AND_TCL_LIBS"
++EXP_AND_TK_LIBS="$EXP_AND_TK_LIBS"
+ 
+ #
+ # Set up makefile substitutions
