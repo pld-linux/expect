@@ -88,14 +88,14 @@ CFLAGS="$RPM_OPT_FLAGS -w" \
 		--with-tclinclude=%{_includedir} \
 		--with-tkinclude=%{_includedir} \
 		--mandir=%{_mandir} %{_target_platform}
-make 
+%{__make} 
 cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
-make \
+%{__make} \
     prefix=$RPM_BUILD_ROOT%{_prefix} \
     mandir=$RPM_BUILD_ROOT%{_mandir} \
     install
