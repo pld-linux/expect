@@ -18,6 +18,7 @@ Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
+BuildRequires:	glibc-static
 BuildRequires:	tcl-devel >= 8.3.2
 BuildRequires:	tk-devel >= 8.3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
