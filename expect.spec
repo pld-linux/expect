@@ -26,9 +26,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	tcl-devel >= 8.4.6
 BuildRequires:	tk-devel >= 8.4.6
+Requires:	tcl >= 8.4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	_ulibdir	/usr/lib
+%define		_ulibdir	/usr/lib
 
 %description
 Expect is a tool for automating interactive applications such as
@@ -86,7 +87,7 @@ Summary:	Tcl extension header files and development documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do rozszerzenia jêzyka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
-Requires:	tcl-devel
+Requires:	tcl-devel >= 8.4.6
 
 %description devel
 Tcl extension language header files and develppment documentation.
