@@ -74,6 +74,14 @@ rm -rf $RPM_BUILD_ROOT
 LD_LIBRARY_PATH=$RPM_BUILD_ROOT/usr/lib \
 make prefix=$RPM_BUILD_ROOT/usr install
 
+for n in $RPM_BUILD_ROOT/usr/bin/* ; do
+	if head -1 $n | grep '#!'; then
+		cp -a $n $n.in
+		sed "s|$RPM_BUILD_ROOT||" < $n.in > $n
+		rm -f $n.in
+	fi
+done
+
 strip $RPM_BUILD_ROOT/usr/{bin/*,lib/libe*.so} || :
 
 %post   -p /sbin/ldconfig
