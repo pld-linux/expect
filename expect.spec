@@ -106,18 +106,18 @@ strip $RPM_BUILD_ROOT/usr/{bin/*,lib/libe*.so} || :
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755, root, root) %{_bindir}/*
-%attr(755, root, root) %dir %{_libdir}/expect*
-%attr(755, root, root) %{_libdir}/expect*/pkgIndex.tcl
-%attr(755, root, root) %{_libdir}/libe*.so
+%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %dir %{_libdir}/expect*
+%attr(755,root,root) %{_libdir}/expect*/pkgIndex.tcl
+%attr(755,root,root) %{_libdir}/libe*.so
 %{_mandir}/man1/*
 
 %files devel
-%attr(644, root, root) %{_includedir}/*
+%attr(644,root,root) %{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
-%attr(644, root, root) %{_libdir}/lib*.a
+%attr(644,root,root) %{_libdir}/lib*.a
 
 %changelog
 * Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
