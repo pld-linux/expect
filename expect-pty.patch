@@ -16,8 +16,8 @@
  #else
  	if ((master = open("/dev/ptmx", O_RDWR)) == -1) return(-1);
  #endif
--	if ((slave_name = (char *)ptsname(master)) == NULL || unlockpt(master)) {
-+	if (slave_name ==  NULL || unlockpt(master)) {
+-	if ((slave_name = (char *)ptsname(master)) == NULL) {
++	if (slave_name ==  NULL) {
  		close(master);
  		return(-1);
  	} else if (grantpt(master)) {
