@@ -82,10 +82,10 @@ CFLAGS="$RPM_OPT_FLAGS -w" \
 ./configure	--enable-gcc \
 		--enable-shared \
 		--prefix=/usr \
-		--with-tclconfig=../tcl8.0.5/unix \
-		--with-tkconfig=../tk8.0.5/unix \
-		--with-tclinclude=../tcl8.0.5/generic \
-		--with-tkinclude=../tk8.0.5/generic \
+		--with-tclconfig=%{_libdir} \
+		--with-tkconfig=/%{_libdir} \
+		--with-tclinclude=%{_includedir} \
+		--with-tkinclude=%{_includedir} \
 		--mandir=%{_mandir} %{_target_platform}
 make 
 cd ..
