@@ -5,7 +5,7 @@ Summary(pl): rozszerzenie tcl pozwalaj±ce na interakcjê miêdzy programami i skry
 Summary(tr): Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:        expect
 Version:     5.26
-Release:     2
+Release:     21
 Copyright:   BSD
 Group:       Development/Languages/Tcl
 Source:      ftp://ftp.cme.nist.gov/pub/expect/expect.tar.gz
