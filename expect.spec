@@ -7,12 +7,12 @@ Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
 Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
 Name:		expect
 %define	major	5.38
-Version:	%{major}.0
-Release:	2
+Version:	%{major}.3
+Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	441c2466efecb644ac08d7b60916f665
+# Source0-md5:	83bd8db643c24d600645873b4100235c
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
