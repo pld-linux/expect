@@ -15,7 +15,7 @@ Patch0:		%{name}.patch
 Patch1:		%{name}-mkpasswd.patch
 Patch2:		%{name}-pty.patch
 Patch3:		%{name}-strf.patch
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Expect is a tool for automating interactive applications such as
