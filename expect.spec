@@ -1,17 +1,21 @@
-Summary:     tcl extension to allow interaction between programs and scripts
-Summary(de): tcl-Erweiterung zur Ermöglichung der Interaktion zwischen  Programmen und Skripts 
-Summary(fr): Extension tcl permettant l'intéraction entre programmes et scripts"
-Summary(pl): rozszerzenie tcl pozwalaj±ce na interakcjê miêdzy programami i skryptami
-Summary(tr): Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
-Name:        expect
-Version:     5.26
-Release:     21
-Copyright:   BSD
-Group:       Development/Languages/Tcl
-Source:      ftp://ftp.cme.nist.gov/pub/expect/expect.tar.gz
-Icon:        %{name}.gif
-Patch:       expect.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+Summary:	tcl extension 
+Summary(de):	tcl-Erweiterung 
+Summary(fr):	Extension tcl 
+Summary(pl):	Rozszerzenie TCL 
+Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
+Name:		expect
+Version:	5.28
+Release:	3
+Copyright:	BSD
+Group:		Development/Languages/Tcl
+Group(pl):	Programowanie/Jêzyki/Tcl
+Source:		ftp://ftp.cme.nist.gov/pub/%{name}/%{name}.tar.gz
+Icon:		tcl.gif
+Patch0:		%{name}.patch
+Patch1:		%{name}-mkpasswd.patch
+Patch2:		%{name}-pty.patch
+Patch3:		%{name}-strf.patch
+Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
 Expect is a tool for automating interactive applications such as
@@ -39,57 +43,63 @@ Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli uygulamalarý
 otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir diðer uygulamayý
 denetlemesini kolaylaþtýrýr.
 
-%package devel
-Summary:     tcl extension header files and development documentation
-Summary(pl): Pliki nag³ówkowe i dokumentacja developerska do rozszerzenia tcl
-Group:       Development/Languages/Tcl
-Requires:    %{name} = %{version}
+%package	devel
+Summary:	tcl extension header files and development documentation
+Summary(pl):	Pliki nag³ówkowe i dokumentacja do rozszerzenia jêzyka TCL
+Group:		Development/Languages/Tcl
+Group(pl):	Programowanie/Jêzyki/Tcl
+Requires:	%{name} = %{version}
 
 %description devel
 Tcl extension language header files and develppment documentation.
 
 %description -l pl devel
-Pliki nag³ówkowe i dokumentacja developersja do rozszerzenie jêzyka tcl.
+Pliki nag³ówkowe i dokumentacja do rozszerzenie jêzyka TCL.
 
-%package static
-Summary:     tcl extension static library
-Summary(pl): Statyczna biblioteka rozszerzenia jêzyka tcl
-Group:       Development/Languages/Tcl
-Requires:    %{name}-devel = %{version}
+%package	static
+Summary:	tcl extension static library
+Summary(pl):	Biblioteka statyczna rozszerzenia jêzyka TCL
+Group:		Development/Languages/Tcl
+Group(pl):	Programowanie/Jêzyki/Tcl
+Requires:	%{name}-devel = %{version}
 
 %description static
 Tcl extension language static library.
 
 %description -l pl static
-Statyczna biblioteka rozszerzenia jêzyka tcl.
+Biblioteka statyczna rozszerzenia jêzyka TCL.
 
 %prep
-%setup -q
-%patch -p1
+%setup  -q
+%patch0 -p1
+%patch1 -p2
+%patch2 -p1
+%patch3 -p1
 
 %build
-# make the libraries reentrant
-#RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT"
-
-TCL_BIN_DIR=%{_bindir} \
-TCL_LIBRARY=%{_libdir} \
-CFLAGS="$RPM_OPT_FLAGS" \
-./configure	%{_target_platform} \
-		--enable-gcc \
+autoconf
+CFLAGS="$RPM_OPT_FLAGS -w" \
+./configure	--enable-gcc \
 		--enable-shared \
 		--prefix=/usr \
-		--with-tclconfig=%{_libdir}
-make
+		--with-tclconfig=../tcl8.0.5/unix \
+		--with-tkconfig=../tk8.0.5/unix \
+		--with-tclinclude=../tcl8.0.5/generic \
+		--with-tkinclude=../tk8.0.5/generic \
+		--mandir=%{_mandir} %{_target_platform}
+make 
 cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-#install -d $RPM_BUILD_ROOT/usr
 
 LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
-make prefix=$RPM_BUILD_ROOT/usr install
+make \
+    prefix=$RPM_BUILD_ROOT%{_prefix} \
+    mandir=$RPM_BUILD_ROOT%{_mandir} \
+    install
 
-for n in $RPM_BUILD_ROOT%{_bindir}/* ; do
+for n in $RPM_BUILD_ROOT/usr/bin/* ; do
 	if head -1 $n | grep '#!'; then
 		cp -a $n $n.in
 		sed "s|$RPM_BUILD_ROOT||" < $n.in > $n
@@ -97,7 +107,12 @@ for n in $RPM_BUILD_ROOT%{_bindir}/* ; do
 	fi
 done
 
-strip $RPM_BUILD_ROOT/usr/{bin/*,lib/libe*.so} || :
+strip $RPM_BUILD_ROOT%{_bindir}/{expect,expectk}
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
+
+( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
+
+gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man[13]/* FAQ README ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -106,20 +121,46 @@ strip $RPM_BUILD_ROOT/usr/{bin/*,lib/libe*.so} || :
 rm -rf $RPM_BUILD_ROOT
 
 %files
+%defattr(644,root,root,755)
+%doc {FAQ,README,ChangeLog}.gz
+
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %dir %{_libdir}/expect*
+
+%dir %{_libdir}/expect*
 %attr(755,root,root) %{_libdir}/expect*/pkgIndex.tcl
 %attr(755,root,root) %{_libdir}/libe*.so
+
 %{_mandir}/man1/*
 
 %files devel
-%attr(644,root,root) %{_includedir}/*
+%defattr(644,root,root,755)
+
+%{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
-%attr(644,root,root) %{_libdir}/lib*.a
+%defattr(644,root,root,755)
+
+%{_libdir}/*.a
 
 %changelog
+* Sun Jan 31 1999 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [5.28-1d]
+- updated to 5.28,
+- added Group(pl),
+- compressed man pages && documentaction,
+
+  by Maciej Ró¿ycki <macro@ds2.amg.gad.pl>
+  
+- added expect-mkpasswd.patch.  
+
+* Thu Oct 08 1998 Wojtek ¦lusarczyk <wojtek@shadow.eu.org>
+  [5.26-2d]
+- build against PLD Tornado,
+- fixed pl translation,
+- added %doc
+- minor changes of the spec file.
+
 * Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
   [5.26-2]
 - added pl translation.
@@ -131,10 +172,10 @@ rm -rf $RPM_BUILD_ROOT
 - added using %%{name} and %%{version} in Source,
 - fixed using $RPM_OPT_FLAGS during compile (curren expect configure script
   don't accept passing CFLAGS in enviroment variable),
-- added stripping shared libraries and othet binary,
+- added striping shared libraries and othet binary,
 - added devel and static subpackage,
 - added package icon,
-- added %attr and %defattr macros in %files (allows build package from
+- added %attr and %defattr macros in %files (allow build package from
   non-root account).
 
 * Thu May 07 1998 Prospector System <bugs@redhat.com>
