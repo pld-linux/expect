@@ -4,17 +4,23 @@ Summary(fr):	Extension tcl
 Summary(pl):	Rozszerzenie TCL 
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:		expect
-Version:	5.28
-Release:	3
+Version:	5.32.2
+Release:	49
 License:	BSD
 Group:		Development/Languages/Tcl
+Group(de):	Entwicklung/Sprachen/Tcl
 Group(pl):	Programowanie/Jêzyki/Tcl
-Source0:	ftp://ftp.cme.nist.gov/pub/%{name}/%{name}.tar.gz
+Source0:	ftp://ftp.scriptics.com/pub/tcl/expect/%{name}.%{version}.tar.gz
+Patch0:		%{name}-pty.patch
+Patch1:		%{name}-alpha.patch
+Patch2:		%{name}-bug7869.patch
+Patch3:		%{name}-fixcat.patch
+Patch4:		%{name}-jbj.patch
+Patch5:		%{name}-DESTDIR.patch
 Icon:		tcl.gif
-Patch0:		%{name}.patch
-Patch1:		%{name}-mkpasswd.patch
-Patch2:		%{name}-pty.patch
-Patch3:		%{name}-strf.patch
+URL:		http://expect.nist.gov/
+BuildRequires:	tcl-devel >= 8.3.2
+BuildRequires:	tk-devel >= 8.3.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,12 +50,14 @@ Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli
 uygulamalarý otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir
 diðer uygulamayý denetlemesini kolaylaþtýrýr.
 
-%package	devel
+%package devel
 Summary:	tcl extension header files and development documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do rozszerzenia jêzyka TCL
 Group:		Development/Languages/Tcl
+Group(de):	Entwicklung/Sprachen/Tcl
 Group(pl):	Programowanie/Jêzyki/Tcl
 Requires:	%{name} = %{version}
+Requires:	tcl-devel
 
 %description devel
 Tcl extension language header files and develppment documentation.
@@ -61,6 +69,7 @@ Pliki nag³ówkowe i dokumentacja do rozszerzenie jêzyka TCL.
 Summary:	tcl extension static library
 Summary(pl):	Biblioteka statyczna rozszerzenia jêzyka TCL
 Group:		Development/Languages/Tcl
+Group(de):	Entwicklung/Sprachen/Tcl
 Group(pl):	Programowanie/Jêzyki/Tcl
 Requires:	%{name}-devel = %{version}
 
@@ -71,49 +80,36 @@ Tcl extension language static library.
 Biblioteka statyczna rozszerzenia jêzyka TCL.
 
 %prep
-%setup  -q
+%setup  -q -n %{name}5.32
 %patch0 -p1
-%patch1 -p2
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+
+chmod +w configure
 
 %build
 autoconf
-CFLAGS="$RPM_OPT_FLAGS -w" \
-./configure	--enable-gcc \
-		--enable-shared \
---prefix=%{_prefix} \
-		--with-tclconfig=%{_libdir} \
-		--with-tkconfig=/%{_libdir} \
-		--with-tclinclude=%{_includedir} \
-		--with-tkinclude=%{_includedir} \
-		--mandir=%{_mandir} %{_target_platform}
+%configure \
+	--enable-gcc \
+	--enable-shared \
+	--with-tclconfig=%{_libdir} \
+	--with-tkconfig=/%{_libdir} \
+	--with-tclinclude=%{_includedir} \
+	--with-tkinclude=%{_includedir}
 %{__make} 
-cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
-%{__make} \
-    prefix=$RPM_BUILD_ROOT%{_prefix} \
-    mandir=$RPM_BUILD_ROOT%{_mandir} \
-    install
-
-for n in $RPM_BUILD_ROOT%{_bindir}/* ; do
-	if head -1 $n | grep '#!'; then
-		cp -a $n $n.in
-		sed "s|$RPM_BUILD_ROOT||" < $n.in > $n
-		rm -f $n.in
-	fi
-done
-
-strip $RPM_BUILD_ROOT%{_bindir}/{expect,expectk}
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
+%{__make} install \
+	INSTALL_ROOT=$RPM_BUILD_ROOT
 
 ( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[13]/* FAQ README ChangeLog
+gzip -9nf FAQ README ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -123,23 +119,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {FAQ,README,ChangeLog}.gz
-
 %attr(755,root,root) %{_bindir}/*
-
 %dir %{_libdir}/expect*
 %attr(755,root,root) %{_libdir}/expect*/pkgIndex.tcl
 %attr(755,root,root) %{_libdir}/libe*.so
-
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-
+%doc *.gz
 %{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-
 %{_libdir}/*.a
