@@ -106,8 +106,7 @@ Biblioteka statyczna rozszerzenia jêzyka TCL.
 chmod +w configure
 
 %build
-autoconf
-%configure \
+%configure2_13 \
 	--enable-gcc \
 	--enable-shared \
 	--with-tclconfig=%{_libdir} \
