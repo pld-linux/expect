@@ -6,20 +6,19 @@ Summary(ru):	Расширение Tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan Tcl geniЧletmesi
 Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-%define	major	5.41
-Version:	%{major}.0
+%define	major	5.42
+Version:	%{major}.1
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	490664773286690d111d9cd055c50700
+# Source0-md5:	fea346fac6aaf74b0851f2441f478571
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
-Patch4:		%{name}-jbj.patch
-Patch5:		%{name}-soname.patch
-Patch6:		%{name}-lib64.patch
+Patch4:		%{name}-soname.patch
+Patch5:		%{name}-lib64.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
@@ -114,9 +113,8 @@ Biblioteka statyczna rozszerzenia jЙzyka Tcl.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 %ifarch amd64
-%patch6 -p1
+%patch5 -p1
 %endif
 
 chmod +w {.,testsuite}/configure
