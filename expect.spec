@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %attr(755, root, root) /usr/bin/*
-%dir /usr/lib/expect*
+%attr(755, root, root) %dir /usr/lib/expect*
 %attr(755, root, root) /usr/lib/expect*/pkgIndex.tcl
 %attr(755, root, root) /usr/lib/libe*.so
 %attr(644, root,  man) /usr/man/man1/*
