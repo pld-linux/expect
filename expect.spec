@@ -1,10 +1,11 @@
 Summary:     tcl extension to allow interaction between programs and scripts
 Summary(de): tcl-Erweiterung zur Ermöglichung der Interaktion zwischen  Programmen und Skripts 
 Summary(fr): Extension tcl permettant l'intéraction entre programmes et scripts"
+Summary(pl): rozszerzenie tcl pozwalaj±ce na interakcjê miêdzy programami i skryptami
 Summary(tr): Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:        expect
 Version:     5.26
-Release:     1
+Release:     2
 Copyright:   BSD
 Group:       Development/Languages/Tcl
 Source:      ftp://ftp.cme.nist.gov/pub/expect/expect.tar.gz
@@ -16,6 +17,11 @@ Buildroot:   /tmp/%{name}-%{version}-root
 Expect is a tool for automating interactive applications such as
 telnet, ftp, passwd, fsck, rlogin, tip, etc. It makes it easy for a
 script to control another program and interact with it.
+
+%description -l pl
+Expect to narzêdzie do automatyzacji interakcji z aplikacjami 
+takimi jak telnet, ftp, passwd, fsck, rlogin, tip itp. Expect
+pozwala w ³atwy sposób przy pomocy skryptu kontrolowaæ inny program.
 
 %description -l de
 Expect ist ein Tool zur Automatisierung interaktiver Applikationen 
@@ -35,19 +41,27 @@ denetlemesini kolaylaþtýrýr.
 
 %package devel
 Summary:     tcl extension header files and development documentation
+Summary(pl): Pliki nag³ówkowe i dokumentacja developerska do rozszerzenia tcl
 Group:       Development/Languages/Tcl
 Requires:    %{name} = %{version}
 
 %description devel
 Tcl extension language header files and develppment documentation.
 
+%description -l pl devel
+Pliki nag³ówkowe i dokumentacja developersja do rozszerzenie jêzyka tcl.
+
 %package static
 Summary:     tcl extension static library
+Summary(pl): Statyczna biblioteka rozszerzenia jêzyka tcl
 Group:       Development/Languages/Tcl
 Requires:    %{name}-devel = %{version}
 
 %description static
 Tcl extension language static library.
+
+%description -l pl static
+Statyczna biblioteka rozszerzenia jêzyka tcl.
 
 %prep
 %setup -q
@@ -105,6 +119,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(644, root, root) /usr/lib/lib*.a
 
 %changelog
+* Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
+  [5.26-2]
+- added pl translation.
+
 * Thu Sep  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [5.26-1]
 - expect is now in separated source package from orher tcl/tk stuff,
