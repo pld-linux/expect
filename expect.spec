@@ -6,13 +6,13 @@ Summary(ru):	Расширение Tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan Tcl geniЧletmesi
 Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-%define	major	5.39
+%define	major	5.40
 Version:	%{major}.0
-Release:	3
+Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	38a39787ef888f4fa009a8384d5c7c0a
+# Source0-md5:	6ae1b87c9af993a69b901b6e52962c18
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
@@ -24,8 +24,8 @@ Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	tcl-devel >= 8.4.4
-BuildRequires:	tk-devel >= 8.4.3
+BuildRequires:	tcl-devel >= 8.4.6
+BuildRequires:	tk-devel >= 8.4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	_ulibdir	/usr/lib
@@ -71,7 +71,7 @@ Expect - це ╕нструмент для автоматизац╕╖ ╕нтерактивних програм, таких
 Summary:	Tk extension
 Summary(pl):	Rozszerzenie Tk
 Group:		Development/Languages/Tcl
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description X11
 This package contains expectk, which is an Tk extension, just as
@@ -85,7 +85,7 @@ expect jest dla Tcl.
 Summary:	Tcl extension header files and development documentation
 Summary(pl):	Pliki nagЁСwkowe i dokumentacja do rozszerzenia jЙzyka Tcl
 Group:		Development/Languages/Tcl
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	tcl-devel
 
 %description devel
@@ -94,11 +94,11 @@ Tcl extension language header files and develppment documentation.
 %description devel -l pl
 Pliki nagЁСwkowe i dokumentacja do rozszerzenie jЙzyka Tcl.
 
-%package	static
+%package static
 Summary:	Tcl extension static library
 Summary(pl):	Biblioteka statyczna rozszerzenia jЙzyka Tcl
 Group:		Development/Languages/Tcl
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Tcl extension language static library.
@@ -122,10 +122,9 @@ chmod +w {.,testsuite}/configure
 
 %build
 install /usr/share/automake/config.* .
-%{__aclocal}
+# only local macros, don't call aclocal
 %{__autoconf}
 cd testsuite
-# aclocal doesn't work
 cp ../aclocal.m4 .
 %{__autoconf}
 cd -
