@@ -9,7 +9,7 @@ Release:     21
 Copyright:   BSD
 Group:       Development/Languages/Tcl
 Source:      ftp://ftp.cme.nist.gov/pub/expect/expect.tar.gz
-Icon:        tcl.gif
+Icon:        %{name}.gif
 Patch:       expect.patch
 Buildroot:   /tmp/%{name}-%{version}-root
 
