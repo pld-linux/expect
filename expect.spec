@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %files devel
-%attr(644, root, root) /usr/include/*
+%attr(644, root, root) %{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
