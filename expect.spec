@@ -72,13 +72,13 @@ Statyczna biblioteka rozszerzenia jêzyka tcl.
 #RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT"
 
 TCL_BIN_DIR=/usr/bin \
-TCL_LIBRARY=/usr/lib \
+TCL_LIBRARY=%{_libdir} \
 CFLAGS="$RPM_OPT_FLAGS" \
 ./configure	%{_target} \
 		--enable-gcc \
 		--enable-shared \
 		--prefix=/usr \
-		--with-tclconfig=/usr/lib
+		--with-tclconfig=%{_libdir}
 make
 cd ..
 
@@ -86,7 +86,7 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 #install -d $RPM_BUILD_ROOT/usr
 
-LD_LIBRARY_PATH=$RPM_BUILD_ROOT/usr/lib \
+LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
 make prefix=$RPM_BUILD_ROOT/usr install
 
 for n in $RPM_BUILD_ROOT/usr/bin/* ; do
@@ -107,9 +107,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %attr(755, root, root) /usr/bin/*
-%attr(755, root, root) %dir /usr/lib/expect*
-%attr(755, root, root) /usr/lib/expect*/pkgIndex.tcl
-%attr(755, root, root) /usr/lib/libe*.so
+%attr(755, root, root) %dir %{_libdir}/expect*
+%attr(755, root, root) %{_libdir}/expect*/pkgIndex.tcl
+%attr(755, root, root) %{_libdir}/libe*.so
 %{_mandir}/man1/*
 
 %files devel
@@ -117,7 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man3/*
 
 %files static
-%attr(644, root, root) /usr/lib/lib*.a
+%attr(644, root, root) %{_libdir}/lib*.a
 
 %changelog
 * Sat Sep 26 1998 Arkadiusz Mi¶kiewicz <misiek@misiek.eu.org>
