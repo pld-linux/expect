@@ -6,11 +6,11 @@ Summary(ru):	òÁÓÛÉÒÅÎÉÅ tcl ÄÌÑ ÕÐÒÁ×ÌÅÎÉÑ ÐÒÏÇÒÁÍÍÁÍÉ ÉÚ ÓËÒÉÐÔÏ×
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Summary(uk):	òÏÚÛÉÒÅÎÎÑ tcl ÄÌÑ ËÅÒÕ×ÁÎÎÑ ÐÒÏÇÒÁÍÁÍÉ Ú¦ ÓËÒÉÐÔ¦×
 Name:		expect
-Version:	5.32.2
-Release:	52.1
+Version:	5.37
+Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	ftp://ftp.scriptics.com/pub/tcl/expect/%{name}.%{version}.tar.gz
+Source0:	http://expect.nist.gov/%{name}.tar.gz
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
@@ -102,7 +102,7 @@ Tcl extension language static library.
 Biblioteka statyczna rozszerzenia jêzyka TCL.
 
 %prep
-%setup  -q -n %{name}5.32
+%setup  -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -127,6 +127,10 @@ cd -
 	--with-tkconfig=%{_libdir} \
 	--with-tclinclude=%{_includedir} \
 	--with-tkinclude=%{_includedir}
+
+cat expect_cf.h | sed "s|.*SETPGRP_VOID.*|\#define SETPGRP_VOID 1|" > expect_cf.h.new
+mv -f expect_cf.h{.new,}
+
 %{__make}
 
 %install
