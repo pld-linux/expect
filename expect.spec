@@ -11,6 +11,7 @@ Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
+# Source0-md5:	441c2466efecb644ac08d7b60916f665
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
