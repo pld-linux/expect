@@ -6,10 +6,10 @@ Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:		expect
 Version:	5.28
 Release:	3
-Copyright:	BSD
+License:	BSD
 Group:		Development/Languages/Tcl
 Group(pl):	Programowanie/Jêzyki/Tcl
-Source:		ftp://ftp.cme.nist.gov/pub/%{name}/%{name}.tar.gz
+Source0:	ftp://ftp.cme.nist.gov/pub/%{name}/%{name}.tar.gz
 Icon:		tcl.gif
 Patch0:		%{name}.patch
 Patch1:		%{name}-mkpasswd.patch
@@ -23,25 +23,26 @@ telnet, ftp, passwd, fsck, rlogin, tip, etc. It makes it easy for a
 script to control another program and interact with it.
 
 %description -l pl
-Expect to narzêdzie do automatyzacji interakcji z aplikacjami 
-takimi jak telnet, ftp, passwd, fsck, rlogin, tip itp. Expect
-pozwala w ³atwy sposób przy pomocy skryptu kontrolowaæ inny program.
+Expect to narzêdzie do automatyzacji interakcji z aplikacjami takimi
+jak telnet, ftp, passwd, fsck, rlogin, tip itp. Expect pozwala w ³atwy
+sposób przy pomocy skryptu kontrolowaæ inny program.
 
 %description -l de
-Expect ist ein Tool zur Automatisierung interaktiver Applikationen 
-wie telnet, ftp, passwd, fsck, rlogin, tip usw. Mit seiner Hilfe 
-kann ein Skript ein anderes Programm sehr leicht steuern oder 
-damit interagieren. 
+Expect ist ein Tool zur Automatisierung interaktiver Applikationen wie
+telnet, ftp, passwd, fsck, rlogin, tip usw. Mit seiner Hilfe kann ein
+Skript ein anderes Programm sehr leicht steuern oder damit
+interagieren.
 
 %description -l fr
 expect est un un outil pour automatiser les applications interactives
 comme telnet, ftp, passwd, fsck, rlogin, tip, etc. Il est alors facile
-pour un script de contrôler un autre programme et d'interagir avec lui.
+pour un script de contrôler un autre programme et d'interagir avec
+lui.
 
 %description -l tr
-Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli uygulamalarý
-otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir diðer uygulamayý
-denetlemesini kolaylaþtýrýr.
+Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli
+uygulamalarý otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir
+diðer uygulamayý denetlemesini kolaylaþtýrýr.
 
 %package	devel
 Summary:	tcl extension header files and development documentation
@@ -81,7 +82,7 @@ autoconf
 CFLAGS="$RPM_OPT_FLAGS -w" \
 ./configure	--enable-gcc \
 		--enable-shared \
-		--prefix=/usr \
+--prefix=%{_prefix} \
 		--with-tclconfig=%{_libdir} \
 		--with-tkconfig=/%{_libdir} \
 		--with-tclinclude=%{_includedir} \
@@ -99,7 +100,7 @@ make \
     mandir=$RPM_BUILD_ROOT%{_mandir} \
     install
 
-for n in $RPM_BUILD_ROOT/usr/bin/* ; do
+for n in $RPM_BUILD_ROOT%{_bindir}/* ; do
 	if head -1 $n | grep '#!'; then
 		cp -a $n $n.in
 		sed "s|$RPM_BUILD_ROOT||" < $n.in > $n
@@ -112,7 +113,7 @@ strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/*.so
 
 ( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
 
-gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man[13]/* FAQ README ChangeLog
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man[13]/* FAQ README ChangeLog
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
