@@ -6,11 +6,11 @@ Summary(ru):	Расширение tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
 Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-Version:	5.38
+Version:	5.38.0
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	http://expect.nist.gov/%{name}.tar.gz
+Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
@@ -102,7 +102,7 @@ Tcl extension language static library.
 Biblioteka statyczna rozszerzenia jЙzyka TCL.
 
 %prep
-%setup  -q
+%setup -q -n %{name}-5.38
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -142,11 +142,11 @@ LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
 
 ( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
