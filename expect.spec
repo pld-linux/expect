@@ -8,8 +8,6 @@ Version:	5.32.2
 Release:	51
 License:	BSD
 Group:		Development/Languages/Tcl
-Group(de):	Entwicklung/Sprachen/Tcl
-Group(pl):	Programowanie/Jêzyki/Tcl
 Source0:	ftp://ftp.scriptics.com/pub/tcl/expect/%{name}.%{version}.tar.gz
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
@@ -54,8 +52,6 @@ diðer uygulamayý denetlemesini kolaylaþtýrýr.
 Summary:	tk extension
 Summary(pl):	rozszerzenie tk
 Group:		Development/Languages/Tcl
-Group(de):	Entwicklung/Sprachen/Tcl
-Group(pl):	Programowanie/Jêzyki/Tcl
 Requires:	%{name} = %{version}
 
 %description X11
@@ -70,8 +66,6 @@ expect jest dla Tcl.
 Summary:	tcl extension header files and development documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do rozszerzenia jêzyka TCL
 Group:		Development/Languages/Tcl
-Group(de):	Entwicklung/Sprachen/Tcl
-Group(pl):	Programowanie/Jêzyki/Tcl
 Requires:	%{name} = %{version}
 Requires:	tcl-devel
 
@@ -85,8 +79,6 @@ Pliki nag³ówkowe i dokumentacja do rozszerzenie jêzyka TCL.
 Summary:	tcl extension static library
 Summary(pl):	Biblioteka statyczna rozszerzenia jêzyka TCL
 Group:		Development/Languages/Tcl
-Group(de):	Entwicklung/Sprachen/Tcl
-Group(pl):	Programowanie/Jêzyki/Tcl
 Requires:	%{name}-devel = %{version}
 
 %description static
