@@ -6,15 +6,15 @@ Summary(ru):	Расширение tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
 Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-%define	major	5.38
-Version:	%{major}.3
+%define	major	5.39
+Version:	%{major}.0
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	83bd8db643c24d600645873b4100235c
+# Source0-md5:	38a39787ef888f4fa009a8384d5c7c0a
 Patch0:		%{name}-pty.patch
-Patch1:		%{name}-alpha.patch
+#Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
@@ -23,7 +23,7 @@ Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	tcl-devel >= 8.4.3
+BuildRequires:	tcl-devel >= 8.4.4
 BuildRequires:	tk-devel >= 8.4.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -66,7 +66,7 @@ Expect - це ╕нструмент для автоматизац╕╖ ╕нтерактивних програм, таких
 
 %package X11
 Summary:	tk extension
-Summary(pl):	rozszerzenie tk
+Summary(pl):	Rozszerzenie tk
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}
 
@@ -106,7 +106,7 @@ Biblioteka statyczna rozszerzenia jЙzyka TCL.
 %prep
 %setup -q -n %{name}-%{major}
 %patch0 -p1
-%patch1 -p1
+##%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -203,7 +203,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc FAQ README ChangeLog
+%doc ChangeLog FAQ HISTORY NEWS README
 %attr(755,root,root) %{_libdir}/libexpect*.so
 %{_includedir}/*
 %{_mandir}/man3/*
