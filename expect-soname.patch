@@ -5,13 +5,26 @@
  $(EXP_SHARED_LIB_FILE): $(OFILES)
  	-rm -f $(EXP_SHARED_LIB_FILE)
 -	@TCL_SHLIB_LD@ -o $(EXP_SHARED_LIB_FILE) $(SHARED_OFILES) @EXP_LD_SEARCH_FLAGS@ @EXP_SHLIB_LD_LIBS@
-+	@TCL_SHLIB_LD@ -o $(EXP_SHARED_LIB_FILE) $(SHARED_OFILES) @EXP_SHLIB_LD_LIBS@ -Wl,-soname=`echo $(EXP_SHARED_LIB_FILE) | sed -e 's/\.so.*/.so.0/'`
-+	ln -s $(EXP_SHARED_LIB_FILE) `echo $(EXP_SHARED_LIB_FILE) | sed -e 's/\.so.*/.so/'`
++	@TCL_SHLIB_LD@ -o $(EXP_SHARED_LIB_FILE) $(SHARED_OFILES) @EXP_SHLIB_LD_LIBS@ -Wl,-soname,@EXP_SHARED_LIB_SONAME@
++	ln -s $(EXP_SHARED_LIB_FILE) libexpect${VERSION}@SHLIB_SUFFIX@
  
  .PHONY: install-info install info
  install-info:
 --- expect-5.38/configure.in.orig	2002-07-18 17:51:06.000000000 +0200
 +++ expect-5.38/configure.in	2003-06-17 20:59:20.000000000 +0200
+@@ -1143,7 +1143,11 @@
+ AC_MSG_CHECKING([for type of library to build])
+ if test "$enable_shared" = "yes" && test "x${TCL_SHLIB_SUFFIX}" != "x" ; then
+   EXP_SHLIB_CFLAGS=$TCL_SHLIB_CFLAGS
+-  eval "EXP_SHARED_LIB_FILE=libexpect${TCL_SHARED_LIB_SUFFIX}"
++  EXP_SHLIB_SOMAJOR=".0"
++  EXP_SHLIB_SOVERSION="${EXP_SHLIB_SOMAJOR}.0"
++  eval "EXP_SHARED_LIB_FILE=libexpect${TCL_SHARED_LIB_SUFFIX}${EXP_SHLIB_SOVERSION}"
++  eval "EXP_SHARED_LIB_SONAME=libexpect${TCL_SHARED_LIB_SUFFIX}${EXP_SHLIB_SOMAJOR}"
++  AC_SUBST(EXP_SHARED_LIB_SONAME)
+   EXP_LIB_FILE=$EXP_SHARED_LIB_FILE
+   EXP_LIB_FILES="$EXP_SHARED_LIB_FILE $EXP_UNSHARED_LIB_FILE"
+   AC_MSG_RESULT(both shared and unshared)
 @@ -1216,8 +1216,8 @@
  
  # now broken out into EXP_AND_TCL_LIBS and EXP_AND_TK_LIBS.  Had to do this
