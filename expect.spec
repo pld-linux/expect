@@ -5,7 +5,7 @@ Summary(pl):	Rozszerzenie TCL
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:		expect
 Version:	5.32.2
-Release:	50
+Release:	51
 License:	BSD
 Group:		Development/Languages/Tcl
 Group(de):	Entwicklung/Sprachen/Tcl
@@ -49,6 +49,22 @@ lui.
 Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli
 uygulamalarý otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir
 diðer uygulamayý denetlemesini kolaylaþtýrýr.
+
+%package X11
+Summary:	tk extension
+Summary(pl):	rozszerzenie tk
+Group:		Development/Languages/Tcl
+Group(de):	Entwicklung/Sprachen/Tcl
+Group(pl):	Programowanie/Jêzyki/Tcl
+Requires:	%{name} = %{version}
+
+%description X11
+This package contains expectk, which is an Tk extension, just as
+expect Tcl extension.
+
+%description X11 -l pl
+Ten pakiet zawiera expectk, który jest rozszerzeniem dla Tk takim jak
+expect jest dla Tcl.
 
 %package devel
 Summary:	tcl extension header files and development documentation
@@ -119,11 +135,46 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/autoexpect
+%attr(755,root,root) %{_bindir}/autopasswd
+%attr(755,root,root) %{_bindir}/cryptdir
+%attr(755,root,root) %{_bindir}/decryptdir
+%attr(755,root,root) %{_bindir}/dislocate
+%attr(755,root,root) %{_bindir}/expect
+%attr(755,root,root) %{_bindir}/ftp-rfc
+%attr(755,root,root) %{_bindir}/kibitz
+%attr(755,root,root) %{_bindir}/lpunlock
+%attr(755,root,root) %{_bindir}/mkpasswd
+%attr(755,root,root) %{_bindir}/passmass
+%attr(755,root,root) %{_bindir}/rftp-expect
+%attr(755,root,root) %{_bindir}/rlogin-cwd
+%attr(755,root,root) %{_bindir}/timed-read
+%attr(755,root,root) %{_bindir}/timed-run
+%attr(755,root,root) %{_bindir}/unbuffer
+%attr(755,root,root) %{_bindir}/weather
 %dir %{_libdir}/expect*
 %attr(755,root,root) %{_libdir}/expect*/pkgIndex.tcl
 %attr(755,root,root) %{_libdir}/libe*.so
-%{_mandir}/man1/*
+%{_mandir}/man1/autoexpect.*
+%{_mandir}/man1/cryptdir.*
+%{_mandir}/man1/decryptdir.*
+%{_mandir}/man1/dislocate.*
+%{_mandir}/man1/expect.*
+%{_mandir}/man1/kibitz.*
+%{_mandir}/man1/mkpasswd.*
+%{_mandir}/man1/passmass.*
+%{_mandir}/man1/unbuffer.*
+
+%files X11
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/expectk
+%attr(755,root,root) %{_bindir}/tknewsbiff
+%attr(755,root,root) %{_bindir}/tkpasswd
+%attr(755,root,root) %{_bindir}/xkibitz
+%attr(755,root,root) %{_bindir}/xpstat
+%{_mandir}/man1/expectk.*
+%{_mandir}/man1/tknewsbiff.*
+%{_mandir}/man1/xkibitz.*
 
 %files devel
 %defattr(644,root,root,755)
