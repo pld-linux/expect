@@ -1,0 +1,11 @@
+--- expect5.31/example/rftp.bug7869	Sat Mar 18 13:41:50 2000
++++ expect5.31/example/rftp	Sat Mar 18 13:42:36 2000
+@@ -113,7 +113,7 @@
+     } timeout {
+ 	send_user "timed out on make remote directory $name\n"
+ 	return 0
+-    } -re "(257|550.*exists).*ftp>.*"
++    } -re "(257|553|550.*exists).*ftp>.*"
+     # 550 is returned if directory already exists
+ 
+     send "cd $name\r"
