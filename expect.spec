@@ -7,7 +7,7 @@ Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Summary(uk):	òÏÚÛÉÒÅÎÎÑ tcl ÄÌÑ ËÅÒÕ×ÁÎÎÑ ÐÒÏÇÒÁÍÁÍÉ Ú¦ ÓËÒÉÐÔ¦×
 Name:		expect
 Version:	5.32.2
-Release:	52
+Release:	52.1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	ftp://ftp.scriptics.com/pub/tcl/expect/%{name}.%{version}.tar.gz
@@ -21,6 +21,8 @@ URL:		http://expect.nist.gov/
 BuildRequires:	glibc-static
 BuildRequires:	tcl-devel >= 8.3.2
 BuildRequires:	tk-devel >= 8.3.2
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -107,14 +109,22 @@ Biblioteka statyczna rozszerzenia jêzyka TCL.
 %patch3 -p1
 %patch4 -p1
 
-chmod +w configure
+chmod +w {.,testsuite}/configure
 
 %build
-%configure2_13 \
+install /usr/share/automake/config.* .
+aclocal
+autoconf
+cd testsuite
+# aclocal doesn't work
+cp ../aclocal.m4 .
+autoconf
+cd -
+%configure \
 	--enable-gcc \
 	--enable-shared \
 	--with-tclconfig=%{_libdir} \
-	--with-tkconfig=/%{_libdir} \
+	--with-tkconfig=%{_libdir} \
 	--with-tclinclude=%{_includedir} \
 	--with-tkinclude=%{_includedir}
 %{__make}
