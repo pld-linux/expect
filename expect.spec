@@ -133,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 - added stripping shared libraries and othet binary,
 - added devel and static subpackage,
 - added package icon,
-- added %attr and %defattr macros in %files (allow build package from
+- added %attr and %defattr macros in %files (allows build package from
   non-root account).
 
 * Thu May 07 1998 Prospector System <bugs@redhat.com>
