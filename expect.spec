@@ -114,11 +114,11 @@ chmod +w {.,testsuite}/configure
 %build
 install /usr/share/automake/config.* .
 aclocal
-autoconf
+%{__autoconf}
 cd testsuite
 # aclocal doesn't work
 cp ../aclocal.m4 .
-autoconf
+%{__autoconf}
 cd -
 %configure \
 	--enable-gcc \
