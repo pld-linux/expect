@@ -1,10 +1,10 @@
-Summary:	tcl extension
-Summary(de):	tcl-Erweiterung
-Summary(fr):	Extension tcl
-Summary(pl):	Rozszerzenie TCL
-Summary(ru):	Расширение tcl для управления программами из скриптов
-Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
-Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
+Summary:	Tcl extension
+Summary(de):	Tcl-Erweiterung
+Summary(fr):	Extension Tcl
+Summary(pl):	Rozszerzenie Tcl
+Summary(ru):	Расширение Tcl для управления программами из скриптов
+Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan Tcl geniЧletmesi
+Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
 %define	major	5.39
 Version:	%{major}.0
@@ -65,8 +65,8 @@ Expect - це ╕нструмент для автоматизац╕╖ ╕нтерактивних програм, таких
 програмами та вза╓мод╕яти з ними з╕ скрипт╕в.
 
 %package X11
-Summary:	tk extension
-Summary(pl):	Rozszerzenie tk
+Summary:	Tk extension
+Summary(pl):	Rozszerzenie Tk
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}
 
@@ -79,8 +79,8 @@ Ten pakiet zawiera expectk, ktСry jest rozszerzeniem dla Tk takim jak
 expect jest dla Tcl.
 
 %package devel
-Summary:	tcl extension header files and development documentation
-Summary(pl):	Pliki nagЁСwkowe i dokumentacja do rozszerzenia jЙzyka TCL
+Summary:	Tcl extension header files and development documentation
+Summary(pl):	Pliki nagЁСwkowe i dokumentacja do rozszerzenia jЙzyka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}
 Requires:	tcl-devel
@@ -89,11 +89,11 @@ Requires:	tcl-devel
 Tcl extension language header files and develppment documentation.
 
 %description devel -l pl
-Pliki nagЁСwkowe i dokumentacja do rozszerzenie jЙzyka TCL.
+Pliki nagЁСwkowe i dokumentacja do rozszerzenie jЙzyka Tcl.
 
 %package	static
-Summary:	tcl extension static library
-Summary(pl):	Biblioteka statyczna rozszerzenia jЙzyka TCL
+Summary:	Tcl extension static library
+Summary(pl):	Biblioteka statyczna rozszerzenia jЙzyka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name}-devel = %{version}
 
@@ -101,7 +101,7 @@ Requires:	%{name}-devel = %{version}
 Tcl extension language static library.
 
 %description static -l pl
-Biblioteka statyczna rozszerzenia jЙzyka TCL.
+Biblioteka statyczna rozszerzenia jЙzyka Tcl.
 
 %prep
 %setup -q -n %{name}-%{major}
