@@ -19,6 +19,7 @@ Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
 Patch5:		%{name}-soname.patch
+Patch6:		%{name}-lib64.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
@@ -26,6 +27,8 @@ BuildRequires:	automake
 BuildRequires:	tcl-devel >= 8.4.4
 BuildRequires:	tk-devel >= 8.4.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define	_ulibdir	/usr/lib
 
 %description
 Expect is a tool for automating interactive applications such as
@@ -111,6 +114,9 @@ Biblioteka statyczna rozszerzenia jêzyka Tcl.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%ifarch amd64
+%patch6 -p1
+%endif
 
 chmod +w {.,testsuite}/configure
 
@@ -126,8 +132,8 @@ cd -
 %configure \
 	--enable-gcc \
 	--enable-shared \
-	--with-tclconfig=%{_libdir} \
-	--with-tkconfig=%{_libdir} \
+	--with-tclconfig=%{_ulibdir} \
+	--with-tkconfig=%{_ulibdir} \
 	--with-tclinclude=%{_includedir} \
 	--with-tkinclude=%{_includedir}
 
