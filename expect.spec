@@ -183,11 +183,13 @@ rm -rf $RPM_BUILD_ROOT
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/expectk
+%attr(755,root,root) %{_bindir}/multixterm
 %attr(755,root,root) %{_bindir}/tknewsbiff
 %attr(755,root,root) %{_bindir}/tkpasswd
 %attr(755,root,root) %{_bindir}/xkibitz
 %attr(755,root,root) %{_bindir}/xpstat
 %{_mandir}/man1/expectk.*
+%{_mandir}/man1/multixterm.*
 %{_mandir}/man1/tknewsbiff.*
 %{_mandir}/man1/xkibitz.*
 
