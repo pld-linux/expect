@@ -71,7 +71,7 @@ Statyczna biblioteka rozszerzenia jêzyka tcl.
 # make the libraries reentrant
 #RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT"
 
-TCL_BIN_DIR=/usr/bin \
+TCL_BIN_DIR=%{_bindir} \
 TCL_LIBRARY=%{_libdir} \
 CFLAGS="$RPM_OPT_FLAGS" \
 ./configure	%{_target} \
@@ -89,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
 make prefix=$RPM_BUILD_ROOT/usr install
 
-for n in $RPM_BUILD_ROOT/usr/bin/* ; do
+for n in $RPM_BUILD_ROOT%{_bindir}/* ; do
 	if head -1 $n | grep '#!'; then
 		cp -a $n $n.in
 		sed "s|$RPM_BUILD_ROOT||" < $n.in > $n
@@ -106,7 +106,7 @@ strip $RPM_BUILD_ROOT/usr/{bin/*,lib/libe*.so} || :
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%attr(755, root, root) /usr/bin/*
+%attr(755, root, root) %{_bindir}/*
 %attr(755, root, root) %dir %{_libdir}/expect*
 %attr(755, root, root) %{_libdir}/expect*/pkgIndex.tcl
 %attr(755, root, root) %{_libdir}/libe*.so
