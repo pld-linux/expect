@@ -11,7 +11,7 @@ Group:       Development/Languages/Tcl
 Source:      ftp://ftp.cme.nist.gov/pub/expect/expect.tar.gz
 Icon:        %{name}.gif
 Patch:       expect.patch
-Buildroot:   /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 Expect is a tool for automating interactive applications such as
