@@ -6,7 +6,7 @@ Summary(ru):	Расширение tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
 Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-Version:	5.37
+Version:	5.38
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
