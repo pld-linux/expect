@@ -1,0 +1,23 @@
+--- expect-5.26/pty_termios.c	Mon Mar 16 19:53:41 1998
++++ expect-5.26.orig/pty_termios.c	Thu Oct  8 09:51:36 1998
+@@ -131,7 +131,11 @@
+ #endif
+ 
+ #if defined(HAVE__GETPTY) || defined(HAVE_PTC_PTS) || defined(HAVE_PTMX)
++# if ((__GLIBC__ == 2) && (__GLIBC_MINOR__ >= 1))
++#include <expect.h>
++#else
+ static char *slave_name;
++# endif /* GNU libc-2.1 */
+ #endif
+ 
+ #if defined(HAVE_GETPTY)
+@@ -369,7 +373,7 @@
+ #else
+ 	if ((master = open("/dev/ptmx", O_RDWR)) == -1) return(-1);
+ #endif
+-	if ((slave_name = (char *)ptsname(master)) == NULL || unlockpt(master)) {
++	if (slave_name ==  NULL || unlockpt(master)) {
+ 		close(master);
+ 		return(-1);
+ 	} else if (grantpt(master)) {
