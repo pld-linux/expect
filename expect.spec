@@ -113,7 +113,7 @@ chmod +w {.,testsuite}/configure
 
 %build
 install /usr/share/automake/config.* .
-aclocal
+%{__aclocal}
 %{__autoconf}
 cd testsuite
 # aclocal doesn't work
