@@ -1,7 +1,7 @@
-Summary:	tcl extension 
-Summary(de):	tcl-Erweiterung 
-Summary(fr):	Extension tcl 
-Summary(pl):	Rozszerzenie TCL 
+Summary:	tcl extension
+Summary(de):	tcl-Erweiterung
+Summary(fr):	Extension tcl
+Summary(pl):	Rozszerzenie TCL
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:		expect
 Version:	5.32.2
@@ -72,7 +72,7 @@ Requires:	tcl-devel
 %description devel
 Tcl extension language header files and develppment documentation.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe i dokumentacja do rozszerzenie jêzyka TCL.
 
 %package	static
@@ -84,7 +84,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Tcl extension language static library.
 
-%description -l pl static
+%description static -l pl
 Biblioteka statyczna rozszerzenia jêzyka TCL.
 
 %prep
@@ -105,7 +105,7 @@ chmod +w configure
 	--with-tkconfig=/%{_libdir} \
 	--with-tclinclude=%{_includedir} \
 	--with-tkinclude=%{_includedir}
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
