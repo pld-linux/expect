@@ -142,8 +142,6 @@ LD_LIBRARY_PATH=$RPM_BUILD_ROOT%{_libdir} \
 
 ( cd $RPM_BUILD_ROOT%{_bindir}; mv -f rftp rftp-expect )
 
-gzip -9nf FAQ README ChangeLog
-
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
@@ -195,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc FAQ README ChangeLog
 %{_includedir}/*
 %{_mandir}/man3/*
 
