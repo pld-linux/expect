@@ -6,13 +6,13 @@ Summary(ru):	Расширение Tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan Tcl geniЧletmesi
 Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-%define	major	5.40
-Version:	%{major}.1
+%define	major	5.41
+Version:	%{major}.0
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	391a4b93dc01b1aad5f6e0752d5d5c73
+# Source0-md5:	490664773286690d111d9cd055c50700
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
