@@ -5,7 +5,7 @@ Summary(pl):	Rozszerzenie TCL
 Summary(tr):	Programlar arasý etkileþimi mümkün kýlan tcl geniþletmesi
 Name:		expect
 Version:	5.32.2
-Release:	49
+Release:	50
 License:	BSD
 Group:		Development/Languages/Tcl
 Group(de):	Entwicklung/Sprachen/Tcl
