@@ -130,7 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 - added using %%{name} and %%{version} in Source,
 - fixed using $RPM_OPT_FLAGS during compile (curren expect configure script
   don't accept passing CFLAGS in enviroment variable),
-- added striping shared libraries and othet binary,
+- added stripping shared libraries and othet binary,
 - added devel and static subpackage,
 - added package icon,
 - added %attr and %defattr macros in %files (allow build package from
