@@ -14,7 +14,7 @@ Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
 # Source0-md5:	38a39787ef888f4fa009a8384d5c7c0a
 Patch0:		%{name}-pty.patch
-#Patch1:		%{name}-alpha.patch
+Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
@@ -106,7 +106,7 @@ Biblioteka statyczna rozszerzenia jêzyka TCL.
 %prep
 %setup -q -n %{name}-%{major}
 %patch0 -p1
-##%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1

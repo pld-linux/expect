@@ -1,23 +1,11 @@
---- expect5.31/exp_command.c.alpha	Tue Aug 17 15:51:00 1999
-+++ expect5.31/exp_command.c	Fri Mar 17 08:43:39 2000
-@@ -795,14 +795,18 @@
- 	    return TCL_ERROR;
- 	}
- 	if (mode & TCL_READABLE) {
--	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_READABLE, (ClientData) &rfd)) {
-+	    ClientData rfd_data;
-+	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_READABLE, &rfd_data)) {
- 		return TCL_ERROR;
- 	    }
-+	    rfd = (int)rfd_data;
+--- expect-5.39/exp_command.c.orig	2003-07-31 20:21:42.000000000 +0200
++++ expect-5.39/exp_command.c	2003-08-07 22:11:03.000000000 +0200
+@@ -801,7 +801,7 @@
+ 	    rfd = (int) rfdc;
  	}
  	if (mode & TCL_WRITABLE) {
--	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_WRITABLE, (ClientData) &wfd)) {
-+	    ClientData wfd_data;
-+	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_WRITABLE, &wfd_data)) {
+-	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_WRITABLE, (ClientData) &wfdc)) {
++	    if (TCL_ERROR == Tcl_GetChannelHandle(channel, TCL_WRITABLE, (ClientData *) &wfdc)) {
  		return TCL_ERROR;
- 	    }    
-+	    wfd = (int)wfd_data;
- 	}
- 	master = ((mode & TCL_READABLE)?rfd:wfd);
- 
+ 	    }
+ 	    wfd = (int) wfdc;
