@@ -2,7 +2,9 @@ Summary:	tcl extension
 Summary(de):	tcl-Erweiterung
 Summary(fr):	Extension tcl
 Summary(pl):	Rozszerzenie TCL
+Summary(ru):	Расширение tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan tcl geniЧletmesi
+Summary(uk):	Розширення tcl для керування програмами з╕ скрипт╕в
 Name:		expect
 Version:	5.32.2
 Release:	52
@@ -47,6 +49,16 @@ lui.
 Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileЧimli
 uygulamalarЩ otomatize etmeye yarayan bir araГtЩr. Bir uygulamanЩn bir
 diПer uygulamayЩ denetlemesini kolaylaЧtЩrЩr.
+
+%description -l ru
+Expect - это инструмент для автоматизации интерактивных программ,
+таких как telnet, ftp, passwd, fsck, rlogin, tip, и т.п. Позволяет
+управлять программами и взаимодействовать с ними из скриптов.
+
+%description -l uk
+Expect - це ╕нструмент для автоматизац╕╖ ╕нтерактивних програм, таких
+як telnet, ftp, passwd, fsck, rlogin, tip, ╕ т.╕. Дозволя╓ керувати
+програмами та вза╓мод╕яти з ними з╕ скрипт╕в.
 
 %package X11
 Summary:	tk extension
