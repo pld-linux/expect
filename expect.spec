@@ -74,7 +74,7 @@ Statyczna biblioteka rozszerzenia jêzyka tcl.
 TCL_BIN_DIR=%{_bindir} \
 TCL_LIBRARY=%{_libdir} \
 CFLAGS="$RPM_OPT_FLAGS" \
-./configure	%{_target} \
+./configure	%{_target_platform} \
 		--enable-gcc \
 		--enable-shared \
 		--prefix=/usr \
