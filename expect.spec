@@ -8,7 +8,7 @@ Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
 %define	major	5.39
 Version:	%{major}.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
