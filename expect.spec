@@ -16,7 +16,6 @@ Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-jbj.patch
-Patch5:		%{name}-DESTDIR.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	tcl-devel >= 8.3.2
