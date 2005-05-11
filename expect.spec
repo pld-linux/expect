@@ -113,7 +113,7 @@ Biblioteka statyczna rozszerzenia jêzyka Tcl.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%ifarch amd64
+%if "%{_lib}" == "lib64"
 %patch5 -p1
 %endif
 
