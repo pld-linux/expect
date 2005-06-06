@@ -19,6 +19,7 @@ Patch2:		%{name}-bug7869.patch
 Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-soname.patch
 Patch5:		%{name}-lib64.patch
+Patch6:		%{name}-build.patch
 Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
@@ -116,6 +117,7 @@ Biblioteka statyczna rozszerzenia jêzyka Tcl.
 %if "%{_lib}" == "lib64"
 %patch5 -p1
 %endif
+%patch6 -p1
 
 chmod +w {.,testsuite}/configure
 
