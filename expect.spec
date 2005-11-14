@@ -8,7 +8,7 @@ Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
 %define	major	5.42
 Version:	%{major}.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
@@ -134,7 +134,7 @@ cd -
 	--enable-shared \
 	--with-tclconfig=%{_ulibdir} \
 	--with-tkconfig=%{_ulibdir} \
-	--with-tclinclude=%{_includedir} \
+	--with-tclinclude=%{_includedir}/tcl-private \
 	--with-tkinclude=%{_includedir}
 
 cat expect_cf.h | sed "s|.*SETPGRP_VOID.*|\#define SETPGRP_VOID 1|" > expect_cf.h.new
