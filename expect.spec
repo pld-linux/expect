@@ -6,13 +6,13 @@ Summary(ru):	Расширение Tcl для управления программами из скриптов
 Summary(tr):	Programlar arasЩ etkileЧimi mЭmkЭn kЩlan Tcl geniЧletmesi
 Summary(uk):	Розширення Tcl для керування програмами з╕ скрипт╕в
 Name:		expect
-%define	major	5.42
-Version:	%{major}.1
-Release:	2
+%define	major	5.43
+Version:	%{major}.0
+Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
-# Source0-md5:	fea346fac6aaf74b0851f2441f478571
+# Source0-md5:	230400129630335b3060a42f66fec11d
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-alpha.patch
 Patch2:		%{name}-bug7869.patch
@@ -129,6 +129,7 @@ cd testsuite
 cp ../aclocal.m4 .
 %{__autoconf}
 cd -
+CFLAGS="%{rpmcflags} -I%{_includedir}/tcl-private/unix"
 %configure \
 	--enable-gcc \
 	--enable-shared \
@@ -211,9 +212,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog FAQ HISTORY NEWS README
 %attr(755,root,root) %{_libdir}/libexpect*.so
-%{_includedir}/*
+%{_includedir}/*.h
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/libexpect*.a
