@@ -20,7 +20,6 @@ Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-soname.patch
 Patch5:		%{name}-lib64.patch
 Patch6:		%{name}-build.patch
-Icon:		tcl.gif
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
