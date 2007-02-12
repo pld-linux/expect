@@ -1,10 +1,10 @@
 Summary:	Tcl extension
-Summary(de.UTF-8):   Tcl-Erweiterung
-Summary(fr.UTF-8):   Extension Tcl
-Summary(pl.UTF-8):   Rozszerzenie Tcl
-Summary(ru.UTF-8):   Расширение Tcl для управления программами из скриптов
-Summary(tr.UTF-8):   Programlar arası etkileşimi mümkün kılan Tcl genişletmesi
-Summary(uk.UTF-8):   Розширення Tcl для керування програмами зі скриптів
+Summary(de.UTF-8):	Tcl-Erweiterung
+Summary(fr.UTF-8):	Extension Tcl
+Summary(pl.UTF-8):	Rozszerzenie Tcl
+Summary(ru.UTF-8):	Расширение Tcl для управления программами из скриптов
+Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletmesi
+Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
 %define	major	5.43
 Version:	%{major}.0
@@ -69,7 +69,7 @@ Expect - це інструмент для автоматизації інтер�
 
 %package X11
 Summary:	Tk extension
-Summary(pl.UTF-8):   Rozszerzenie Tk
+Summary(pl.UTF-8):	Rozszerzenie Tk
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 
@@ -83,7 +83,7 @@ expect jest dla Tcl.
 
 %package devel
 Summary:	Tcl extension header files and development documentation
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do rozszerzenia języka Tcl
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do rozszerzenia języka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 Requires:	tcl-devel >= 8.4.6
@@ -96,7 +96,7 @@ Pliki nagłówkowe i dokumentacja do rozszerzenie języka Tcl.
 
 %package static
 Summary:	Tcl extension static library
-Summary(pl.UTF-8):   Biblioteka statyczna rozszerzenia języka Tcl
+Summary(pl.UTF-8):	Biblioteka statyczna rozszerzenia języka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name}-devel = %{version}-%{release}
 
