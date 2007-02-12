@@ -1,10 +1,10 @@
 Summary:	Tcl extension
-Summary(de):	Tcl-Erweiterung
-Summary(fr):	Extension Tcl
-Summary(pl):	Rozszerzenie Tcl
-Summary(ru):	òÁÓÛÉÒÅÎÉÅ Tcl ÄÌÑ ÕÐÒÁ×ÌÅÎÉÑ ÐÒÏÇÒÁÍÍÁÍÉ ÉÚ ÓËÒÉÐÔÏ×
-Summary(tr):	Programlar arasý etkileþimi mümkün kýlan Tcl geniþletmesi
-Summary(uk):	òÏÚÛÉÒÅÎÎÑ Tcl ÄÌÑ ËÅÒÕ×ÁÎÎÑ ÐÒÏÇÒÁÍÁÍÉ Ú¦ ÓËÒÉÐÔ¦×
+Summary(de.UTF-8):   Tcl-Erweiterung
+Summary(fr.UTF-8):   Extension Tcl
+Summary(pl.UTF-8):   Rozszerzenie Tcl
+Summary(ru.UTF-8):   Ð Ð°ÑÑˆÐ¸Ñ€ÐµÐ½Ð¸Ðµ Tcl Ð´Ð»Ñ ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°Ð¼Ð¸ Ð¸Ð· ÑÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð²
+Summary(tr.UTF-8):   Programlar arasÄ± etkileÅŸimi mÃ¼mkÃ¼n kÄ±lan Tcl geniÅŸletmesi
+Summary(uk.UTF-8):   Ð Ð¾Ð·ÑˆÐ¸Ñ€ÐµÐ½Ð½Ñ Tcl Ð´Ð»Ñ ÐºÐµÑ€ÑƒÐ²Ð°Ð½Ð½Ñ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð°Ð¼Ð¸ Ð·Ñ– ÑÐºÑ€Ð¸Ð¿Ñ‚Ñ–Ð²
 Name:		expect
 %define	major	5.43
 Version:	%{major}.0
@@ -35,41 +35,41 @@ Expect is a tool for automating interactive applications such as
 telnet, ftp, passwd, fsck, rlogin, tip, etc. It makes it easy for a
 script to control another program and interact with it.
 
-%description -l pl
-Expect to narzêdzie do automatyzacji interakcji z aplikacjami takimi
-jak telnet, ftp, passwd, fsck, rlogin, tip itp. Expect pozwala w ³atwy
-sposób przy pomocy skryptu kontrolowaæ inny program.
+%description -l pl.UTF-8
+Expect to narzÄ™dzie do automatyzacji interakcji z aplikacjami takimi
+jak telnet, ftp, passwd, fsck, rlogin, tip itp. Expect pozwala w Å‚atwy
+sposÃ³b przy pomocy skryptu kontrolowaÄ‡ inny program.
 
-%description -l de
+%description -l de.UTF-8
 Expect ist ein Tool zur Automatisierung interaktiver Applikationen wie
 telnet, ftp, passwd, fsck, rlogin, tip usw. Mit seiner Hilfe kann ein
 Skript ein anderes Programm sehr leicht steuern oder damit
 interagieren.
 
-%description -l fr
+%description -l fr.UTF-8
 expect est un un outil pour automatiser les applications interactives
 comme telnet, ftp, passwd, fsck, rlogin, tip, etc. Il est alors facile
-pour un script de contrôler un autre programme et d'interagir avec
+pour un script de contrÃ´ler un autre programme et d'interagir avec
 lui.
 
-%description -l tr
-Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileþimli
-uygulamalarý otomatize etmeye yarayan bir araçtýr. Bir uygulamanýn bir
-diðer uygulamayý denetlemesini kolaylaþtýrýr.
+%description -l tr.UTF-8
+Expect telnet, ftp, passwd, fsck, rlogin, tip gibi etkileÅŸimli
+uygulamalarÄ± otomatize etmeye yarayan bir araÃ§tÄ±r. Bir uygulamanÄ±n bir
+diÄŸer uygulamayÄ± denetlemesini kolaylaÅŸtÄ±rÄ±r.
 
-%description -l ru
-Expect - ÜÔÏ ÉÎÓÔÒÕÍÅÎÔ ÄÌÑ Á×ÔÏÍÁÔÉÚÁÃÉÉ ÉÎÔÅÒÁËÔÉ×ÎÙÈ ÐÒÏÇÒÁÍÍ,
-ÔÁËÉÈ ËÁË telnet, ftp, passwd, fsck, rlogin, tip, É Ô.Ð. ðÏÚ×ÏÌÑÅÔ
-ÕÐÒÁ×ÌÑÔØ ÐÒÏÇÒÁÍÍÁÍÉ É ×ÚÁÉÍÏÄÅÊÓÔ×Ï×ÁÔØ Ó ÎÉÍÉ ÉÚ ÓËÒÉÐÔÏ×.
+%description -l ru.UTF-8
+Expect - ÑÑ‚Ð¾ Ð¸Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¸Ð½Ñ‚ÐµÑ€Ð°ÐºÑ‚Ð¸Ð²Ð½Ñ‹Ñ… Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼,
+Ñ‚Ð°ÐºÐ¸Ñ… ÐºÐ°Ðº telnet, ftp, passwd, fsck, rlogin, tip, Ð¸ Ñ‚.Ð¿. ÐŸÐ¾Ð·Ð²Ð¾Ð»ÑÐµÑ‚
+ÑƒÐ¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ð°Ð¼Ð¸ Ð¸ Ð²Ð·Ð°Ð¸Ð¼Ð¾Ð´ÐµÐ¹ÑÑ‚Ð²Ð¾Ð²Ð°Ñ‚ÑŒ Ñ Ð½Ð¸Ð¼Ð¸ Ð¸Ð· ÑÐºÑ€Ð¸Ð¿Ñ‚Ð¾Ð².
 
-%description -l uk
-Expect - ÃÅ ¦ÎÓÔÒÕÍÅÎÔ ÄÌÑ Á×ÔÏÍÁÔÉÚÁÃ¦§ ¦ÎÔÅÒÁËÔÉ×ÎÉÈ ÐÒÏÇÒÁÍ, ÔÁËÉÈ
-ÑË telnet, ftp, passwd, fsck, rlogin, tip, ¦ Ô.¦. äÏÚ×ÏÌÑ¤ ËÅÒÕ×ÁÔÉ
-ÐÒÏÇÒÁÍÁÍÉ ÔÁ ×ÚÁ¤ÍÏÄ¦ÑÔÉ Ú ÎÉÍÉ Ú¦ ÓËÒÉÐÔ¦×.
+%description -l uk.UTF-8
+Expect - Ñ†Ðµ Ñ–Ð½ÑÑ‚Ñ€ÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð°Ð²Ñ‚Ð¾Ð¼Ð°Ñ‚Ð¸Ð·Ð°Ñ†Ñ–Ñ— Ñ–Ð½Ñ‚ÐµÑ€Ð°ÐºÑ‚Ð¸Ð²Ð½Ð¸Ñ… Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼, Ñ‚Ð°ÐºÐ¸Ñ…
+ÑÐº telnet, ftp, passwd, fsck, rlogin, tip, Ñ– Ñ‚.Ñ–. Ð”Ð¾Ð·Ð²Ð¾Ð»ÑÑ” ÐºÐµÑ€ÑƒÐ²Ð°Ñ‚Ð¸
+Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð°Ð¼Ð¸ Ñ‚Ð° Ð²Ð·Ð°Ñ”Ð¼Ð¾Ð´Ñ–ÑÑ‚Ð¸ Ð· Ð½Ð¸Ð¼Ð¸ Ð·Ñ– ÑÐºÑ€Ð¸Ð¿Ñ‚Ñ–Ð².
 
 %package X11
 Summary:	Tk extension
-Summary(pl):	Rozszerzenie Tk
+Summary(pl.UTF-8):   Rozszerzenie Tk
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 
@@ -77,13 +77,13 @@ Requires:	%{name} = %{version}-%{release}
 This package contains expectk, which is an Tk extension, just as
 expect Tcl extension.
 
-%description X11 -l pl
-Ten pakiet zawiera expectk, który jest rozszerzeniem dla Tk takim jak
+%description X11 -l pl.UTF-8
+Ten pakiet zawiera expectk, ktÃ³ry jest rozszerzeniem dla Tk takim jak
 expect jest dla Tcl.
 
 %package devel
 Summary:	Tcl extension header files and development documentation
-Summary(pl):	Pliki nag³ówkowe i dokumentacja do rozszerzenia jêzyka Tcl
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i dokumentacja do rozszerzenia jÄ™zyka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name} = %{version}-%{release}
 Requires:	tcl-devel >= 8.4.6
@@ -91,20 +91,20 @@ Requires:	tcl-devel >= 8.4.6
 %description devel
 Tcl extension language header files and develppment documentation.
 
-%description devel -l pl
-Pliki nag³ówkowe i dokumentacja do rozszerzenie jêzyka Tcl.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i dokumentacja do rozszerzenie jÄ™zyka Tcl.
 
 %package static
 Summary:	Tcl extension static library
-Summary(pl):	Biblioteka statyczna rozszerzenia jêzyka Tcl
+Summary(pl.UTF-8):   Biblioteka statyczna rozszerzenia jÄ™zyka Tcl
 Group:		Development/Languages/Tcl
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Tcl extension language static library.
 
-%description static -l pl
-Biblioteka statyczna rozszerzenia jêzyka Tcl.
+%description static -l pl.UTF-8
+Biblioteka statyczna rozszerzenia jÄ™zyka Tcl.
 
 %prep
 %setup -q -n %{name}-%{major}
