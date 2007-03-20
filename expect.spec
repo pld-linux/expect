@@ -1,3 +1,7 @@
+#
+# BIG FAT WARNING:
+#	- expect requires mounted /dev/pts to avoid `spawn failed' errors.
+#
 Summary:	Tcl extension
 Summary(de.UTF-8):	Tcl-Erweiterung
 Summary(fr.UTF-8):	Extension Tcl
