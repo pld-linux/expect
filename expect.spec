@@ -12,7 +12,7 @@ Summary(uk.UTF-8):	Розширення Tcl для керування прогр
 Name:		expect
 %define	major	5.43
 Version:	%{major}.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://expect.nist.gov/src/%{name}-%{version}.tar.gz
@@ -24,12 +24,13 @@ Patch3:		%{name}-fixcat.patch
 Patch4:		%{name}-soname.patch
 Patch5:		%{name}-lib64.patch
 Patch6:		%{name}-build.patch
+Patch7:		%{name}-tcl85.patch
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	tcl-devel >= 8.4.6
-BuildRequires:	tk-devel >= 8.4.6
-Requires:	tcl >= 8.4.6
+BuildRequires:	tcl-devel >= 8.5.0
+BuildRequires:	tk-devel >= 8.5.0
+Requires:	tcl >= 8.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_ulibdir	/usr/lib
@@ -121,6 +122,7 @@ Biblioteka statyczna rozszerzenia języka Tcl.
 %patch5 -p1
 %endif
 %patch6 -p1
+%patch7 -p1
 
 chmod +w {.,testsuite}/configure
 
