@@ -2,6 +2,7 @@
 # BIG FAT WARNING:
 #	- expect requires mounted /dev/pts to avoid `spawn failed' errors.
 #
+%bcond_witout	tests
 Summary:	Tcl expect extension
 Summary(de.UTF-8):	Tcl-Erweiterung
 Summary(fr.UTF-8):	Extension Tcl
@@ -10,16 +11,15 @@ Summary(ru.UTF-8):	Расширение Tcl для управления прог
 Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletmesi
 Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
-Version:	5.44.1.15
+Version:	5.45
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	http://downloads.sourceforge.net/expect/%{name}-%{version}.tar.bz2
-# Source0-md5:	9307bbf67e19125036ce34544a78dadf
+Source0:	http://downloads.sourceforge.net/project/expect/Expect/%{version}/%{name}%{version}.tar.gz
+# Source0-md5:	44e1a4f4c877e9ddc5a542dfa7ecc92b
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-bug7869.patch
-Patch2:		%{name}-fixcat.patch
-Patch3:		%{name}-soname.patch
+Patch2:		%{name}-soname.patch
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -100,11 +100,10 @@ documentation.
 Pliki nagłówkowe i dokumentacja do rozszerzenia expect języka Tcl.
 
 %prep
-%setup -q
+%setup -q -n %{name}%{version}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 chmod +w {.,testsuite}/configure
 
@@ -117,14 +116,19 @@ cd testsuite
 cd ..
 CFLAGS="%{rpmcflags} -I%{_includedir}/tcl-private/unix"
 %configure \
+%if "%{_lib}" == "lib64"
+	--enable-64bit \
+%endif
 	--enable-gcc \
 	--enable-shared \
 	--with-tclconfig=%{_ulibdir} \
 	--with-tkconfig=%{_ulibdir} \
-	--with-tclinclude=%{_includedir}/tcl-private \
+	--with-tclinclude=%{_includedir} \
 	--with-tkinclude=%{_includedir}
 
 %{__make}
+
+%{?with_tests:%{__make} test TCLSH_PROG=tclsh}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -182,13 +186,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files X11
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/expectk
 %attr(755,root,root) %{_bindir}/multixterm
 %attr(755,root,root) %{_bindir}/tknewsbiff
 %attr(755,root,root) %{_bindir}/tkpasswd
 %attr(755,root,root) %{_bindir}/xkibitz
 %attr(755,root,root) %{_bindir}/xpstat
-%{_mandir}/man1/expectk.1*
 %{_mandir}/man1/multixterm.1*
 %{_mandir}/man1/tknewsbiff.1*
 %{_mandir}/man1/xkibitz.1*
