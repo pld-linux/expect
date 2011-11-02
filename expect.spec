@@ -2,7 +2,7 @@
 # BIG FAT WARNING:
 #	- expect requires mounted /dev/pts to avoid `spawn failed' errors.
 #
-%bcond_witout	tests
+%bcond_without	tests
 Summary:	Tcl expect extension
 Summary(de.UTF-8):	Tcl-Erweiterung
 Summary(fr.UTF-8):	Extension Tcl
