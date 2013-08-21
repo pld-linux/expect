@@ -15,7 +15,7 @@ Version:	5.45
 Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
-Source0:	http://downloads.sourceforge.net/project/expect/Expect/%{version}/%{name}%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
 # Source0-md5:	44e1a4f4c877e9ddc5a542dfa7ecc92b
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-bug7869.patch
