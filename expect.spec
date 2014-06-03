@@ -12,7 +12,7 @@ Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletme
 Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
 Version:	5.45
-Release:	2
+Release:	3
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
@@ -20,6 +20,7 @@ Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-bug7869.patch
 Patch2:		%{name}-soname.patch
+Patch3:		%{name}-format.patch
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -104,6 +105,7 @@ Pliki nagłówkowe i dokumentacja do rozszerzenia expect języka Tcl.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 chmod +w {.,testsuite}/configure
 

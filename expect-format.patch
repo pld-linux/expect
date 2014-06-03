@@ -1,0 +1,13 @@
+--- expect5.45/exp_clib.c~	2010-09-01 00:20:27.000000000 +0200
++++ expect5.45/exp_clib.c	2014-06-03 10:51:24.193073887 +0200
+@@ -1476,8 +1476,8 @@
+      char *str;
+ {
+   if (exp_is_debugging) {
+-    fprintf(stderr,str);
+-    if (exp_logfile) fprintf(exp_logfile,str);
++    fprintf(stderr,"%s",str);
++    if (exp_logfile) fprintf(exp_logfile,"%s",str);
+   }
+ }
+ 
