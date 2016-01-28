@@ -12,7 +12,7 @@ Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletme
 Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
 Version:	5.45
-Release:	4
+Release:	5
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
@@ -21,14 +21,24 @@ Patch0:		%{name}-pty.patch
 Patch1:		%{name}-bug7869.patch
 Patch2:		%{name}-soname.patch
 Patch3:		%{name}-format.patch
+Patch4:		%{name}-5.43.0-log_file.patch
+Patch5:		%{name}-5.45-match-gt-numchars-segfault.patch
+Patch6:		%{name}-5.45-re-memleak.patch
+Patch7:		%{name}-5.45-exp-log-buf-overflow.patch
+Patch8:		%{name}-5.45-segfault-with-stubs.patch
+Patch9:		%{name}-5.45-fd-leak.patch
+Patch10:	%{name}-5.32.2-random.patch
+Patch11:	%{name}-5.45-mkpasswd-dash.patch
+Patch12:	%{name}-5.45-check-telnet.patch
+Patch13:	%{name}-5.45-passmass-su-full-path.patch
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	tcl-devel >= 8.5.0
 BuildRequires:	tk-devel >= 8.5.0
 BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXScrnSaver-devel
+BuildRequires:	xorg-lib-libXext-devel
 Requires:	tcl >= 8.5.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -106,6 +116,16 @@ Pliki nagłówkowe i dokumentacja do rozszerzenia expect języka Tcl.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
 
 chmod +w {.,testsuite}/configure
 
