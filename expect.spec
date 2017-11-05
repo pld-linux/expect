@@ -11,12 +11,12 @@ Summary(ru.UTF-8):	Расширение Tcl для управления прог
 Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletmesi
 Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
-Version:	5.45
-Release:	5
+Version:	5.45.3
+Release:	1
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
-# Source0-md5:	44e1a4f4c877e9ddc5a542dfa7ecc92b
+# Source0-md5:	a8855cd41c1ef004b9794db9e2a57a9d
 Patch0:		%{name}-pty.patch
 Patch1:		%{name}-bug7869.patch
 Patch2:		%{name}-soname.patch
