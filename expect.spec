@@ -12,7 +12,7 @@ Summary(tr.UTF-8):	Programlar arası etkileşimi mümkün kılan Tcl genişletme
 Summary(uk.UTF-8):	Розширення Tcl для керування програмами зі скриптів
 Name:		expect
 Version:	5.45.4
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages/Tcl
 Source0:	http://downloads.sourceforge.net/expect/%{name}%{version}.tar.gz
@@ -31,6 +31,9 @@ Patch10:	%{name}-5.32.2-random.patch
 Patch11:	%{name}-5.45-mkpasswd-dash.patch
 Patch12:	%{name}-5.45-check-telnet.patch
 Patch13:	%{name}-5.45-passmass-su-full-path.patch
+Patch14:	expect-c99.patch
+Patch15:	expect-configure-c99.patch
+Patch16:	expect-5.45.4-covscan-fixes.patch
 URL:		http://expect.nist.gov/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -126,6 +129,9 @@ Pliki nagłówkowe i dokumentacja do rozszerzenia expect języka Tcl.
 %patch -P11 -p1
 %patch -P12 -p1
 %patch -P13 -p1
+%patch -P14 -p1
+%patch -P15 -p1
+%patch -P16 -p1
 
 chmod +w {.,testsuite}/configure
 
@@ -136,7 +142,7 @@ install /usr/share/automake/config.* .
 cd testsuite
 %{__autoconf} -I ..
 cd ..
-CFLAGS="%{rpmcflags} -I%{_includedir}/tcl-private/unix"
+CFLAGS="%{rpmcflags} -I%{_includedir}/tcl-private/unix -std=gnu17"
 %configure \
 %if "%{_lib}" == "lib64"
 	--enable-64bit \
